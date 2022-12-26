@@ -22,8 +22,9 @@ return new class extends Migration
             $table->integer('like')->default(0);
             $table->tinyInteger('isActive')->default(0);
             $table->tinyInteger('isDelete')->default(0);
-            $table->foreignId('clients_id');
-            $table->foreignId('categories_id');
+            $table->bigInteger('clients_id');
+            $table->bigInteger('categories_id');
+            $table->foreign('clients_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }
