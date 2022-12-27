@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('set_photos', function (Blueprint $table) {
             $table->id();
-            $table->string('origin_photo');
+            $table->string('origin_name_photo');
             $table->string('md5_origin_photo');
+            $table->string('file_origin');
             $table->string('md5_medium_photo');
+            $table->string('file_medium');
             $table->string('md5_little_photo');
+            $table->string('file_little');
             $table->integer('like')->default(0);
             $table->bigInteger('photos_id');
             $table->bigInteger('clients_id');
