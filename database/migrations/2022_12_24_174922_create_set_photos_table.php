@@ -23,7 +23,6 @@ return new class extends Migration
             $table->bigInteger('clients_id');
             $table->bigInteger('categories_id');
             $table->foreign('photos_id')->references('id')->on('photos')->onDelete('cascade');
-            $table->foreign('clients_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }

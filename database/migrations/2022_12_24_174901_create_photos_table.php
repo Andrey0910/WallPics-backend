@@ -27,7 +27,6 @@ return new class extends Migration
             $table->tinyInteger('isDelete')->default(0);
             $table->bigInteger('clients_id');
             $table->bigInteger('categories_id');
-            $table->foreign('clients_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }
