@@ -100,13 +100,13 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="./index.html" class="nav-link active">
+                        <a href="{{route('homeAdmin')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Главная</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="./index2.html" class="nav-link">
+                        <a href="{{route('createPhotosAdmin')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Занрузить фотографии</p>
                         </a>
@@ -185,5 +185,8 @@
 <script src="/admin/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/admin/dist/js/pages/dashboard.js"></script>
+
+{{--My javasctipt--}}
+<script src="/admin/admin.js"></script>
 </body>
 </html>

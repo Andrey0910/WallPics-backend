@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\Photos\PhotosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,16 +17,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route::middleware('role:admin')->prefix('admin_panel')->group(function () {
-    Route::middleware('auth')->prefix('admin_panel')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('homeAdmin');
+//    Route::get('/admin_panel', [HomeController::class, 'index'])->name('homeAdmin');
+    Route::get('/photos/create', [PhotosController::class, 'create'])->name('createPhotosAdmin');
 
 //    Route::resource('/category', CategoryController::class);
 //    Route::resource('/post', PostController::class);
