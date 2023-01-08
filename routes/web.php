@@ -22,14 +22,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 //Route::middleware('role:admin')->prefix('admin_panel')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('homeAdmin');
 //    Route::get('/admin_panel', [HomeController::class, 'index'])->name('homeAdmin');
     Route::get('/photos/create', [PhotosController::class, 'create'])->name('createPhotosAdmin');
-
-//    Route::resource('/category', CategoryController::class);
-//    Route::resource('/post', PostController::class);
+    Route::post('/photos/file-upload', [PhotosController::class, 'store'])->name('dropzoneFileUpload');
 });

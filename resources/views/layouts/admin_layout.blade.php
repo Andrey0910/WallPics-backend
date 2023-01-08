@@ -28,6 +28,14 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+{{--    Image Upload--}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
+
+    <script src="/admin/js/images_upload.js"></script>
+    <link rel="stylesheet" href="/admin/js/images_upload.css">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -187,6 +195,6 @@
 <script src="/admin/dist/js/pages/dashboard.js"></script>
 
 {{--My javasctipt--}}
-<script src="/admin/admin.js"></script>
+<script src="/admin/js/admin.js"></script>
 </body>
 </html>

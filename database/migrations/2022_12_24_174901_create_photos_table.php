@@ -18,10 +18,6 @@ return new class extends Migration
             $table->string('origin_name_photo');
             $table->string('md5_origin_photo');
             $table->string('file_origin');
-            $table->string('md5_medium_photo');
-            $table->string('file_medium');
-            $table->string('md5_little_photo');
-            $table->string('file_little');
             $table->integer('like')->default(0);
             $table->tinyInteger('isActive')->default(0);
             $table->tinyInteger('isDelete')->default(0);
