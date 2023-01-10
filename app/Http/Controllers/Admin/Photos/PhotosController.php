@@ -39,6 +39,10 @@ class PhotosController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'file' => 'image|mimes:jpeg,bmp,png,svg|max:'.Env::get('PHOTO_SIZE_MAX'),
+        ]);
+
         $basePathDir = public_path(Env::get('BASE_PHOTOS_DIR').'/');
         $image = $request->file('file');
         $originalName = $image->getClientOriginalName();
