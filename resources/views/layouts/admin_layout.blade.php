@@ -114,7 +114,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('createPhotosAdmin')}}" class="nav-link">
+                        <a href="{{route('createPhotos')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Занрузить фотографии</p>
                         </a>
@@ -126,9 +126,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="./index3.html" class="nav-link">
+                        <a href="{{route('setPhotos')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Создать сет</p>
+                            <p>Сет фотографий</p>
                         </a>
                     </li>
                 </ul>
