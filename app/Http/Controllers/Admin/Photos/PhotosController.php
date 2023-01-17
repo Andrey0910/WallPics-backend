@@ -128,11 +128,11 @@ class PhotosController extends Controller
             if (!file_exists($basePathDir.$pathDir)) {
                 mkdir($basePathDir.$pathDir, 0777, true);
             }
-            $pathDir .= $value.'/';
-            $i++;
             if ($i >= $nesting){
                 break;
             }
+            $pathDir .= $value.'/';
+            $i++;
         }
 
         return $pathDir;
