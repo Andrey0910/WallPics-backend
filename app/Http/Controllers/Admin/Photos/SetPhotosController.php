@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin\Photos;
 
 use App\Http\Controllers\Controller;
 use App\Models\SetPhotos;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Env;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
 
 class SetPhotosController extends Controller
@@ -31,10 +33,10 @@ class SetPhotosController extends Controller
         $basePathDir = public_path(Env::get('BASE_PHOTOS_DIR').'/');
         $basePathDirSet = $basePathDir.Env::get('SET_PHOTOS_DIR').'/';
 
-//        if (file_exists($basePathDirSet)) {
-//            rmdir($basePathDirSet); // не удаляет вложенные папки
-//        }
-//        SetPhotos::truncate();
+        if (file_exists($basePathDirSet)) {
+            File::cleanDirectory($basePathDirSet);
+        }
+        DB::statement('truncate table set_photos');
 
         $photos  = DB::table('photos')
                         ->inRandomOrder()
@@ -59,6 +61,15 @@ class SetPhotosController extends Controller
             $fullPathFile = $basePathDirSet.$pathDirLittle.$imageNameLittle.'.'.$arrFile[1];
             $this->resizeAndSaveImg($fullPathFile, $img, Env::get('WIDTHLITTLE'), Env::get('HEIGHTLITTLE'));
 
+            $setPhotos = new SetPhotos;
+            $setPhotos->file_origin = $photo->file_origin;
+            $setPhotos->file_medium = $pathDirMedium.$imageNameMedium.'.'.$arrFile[1];
+            $setPhotos->file_little = $pathDirLittle.$imageNameLittle.'.'.$arrFile[1];
+            $setPhotos->like = $photo->like;
+            $setPhotos->photos_id = $photo->id;
+            $setPhotos->clients_id = 0;
+            $setPhotos->categories_id = 0;
+            $setPhotos->save();
         }
 
         $data = [
