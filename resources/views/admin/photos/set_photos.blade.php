@@ -18,30 +18,25 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form action="{{route('createSetPhotos')}}">
+            <form action="{{route('storeSetPhotos')}}">
                 <div class="row">
                     <div class="col-12">
                         <div class="card card-primary">
                             <div class="card-header">
                                 <input type="submit" value="Создать новый сет">
-                                <h1>{{isset($result) ? $result : ''}}</h1>
+                                <h1>@isset($result) {{$result}} @endisset</h1>
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    @if(isset($photos))
-                                        @foreach($photos as $photo)
+                                    @isset($setPhotos)
+                                        @foreach($setPhotos as $photo)
                                             <div class="col-sm-2">
-                                                <a href="https://via.placeholder.com/1200/FFFFFF.png?text=1" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
-                                                    <img src="{{$basePathDir.$photo->file_origin}}" class="img-fluid mb-2" alt="white sample"/>
+                                                <a href="{{$photosDir.$photo->file_origin}}" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery" target="_blank">
+                                                    <img src="{{$setPhotosDir.$photo->file_little}}" class="img-fluid mb-2" alt="white sample"/>
                                                 </a>
                                             </div>
                                         @endforeach
-                                    @endif
-                                    <div class="col-sm-2">
-                                        <a href="https://via.placeholder.com/1200/FFFFFF.png?text=1" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
-                                            <img src="https://via.placeholder.com/300/FFFFFF?text=1" class="img-fluid mb-2" alt="white sample"/>
-                                        </a>
-                                    </div>
+                                    @endisset
                                 </div>
                             </div>
                         </div>

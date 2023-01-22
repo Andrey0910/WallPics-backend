@@ -33,8 +33,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
 
-    <script src="/admin/js/images_upload.js"></script>
-    <link rel="stylesheet" href="/admin/js/images_upload.css">
+    <link rel="stylesheet" href="/admin/css/images_upload.css">
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -126,7 +125,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('setPhotos')}}" class="nav-link">
+                        <a href="{{route('setPhotos')}}" class="nav-link @isset($navLink) {{$navLink}} @endisset">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Сет фотографий</p>
                         </a>
@@ -196,5 +195,6 @@
 
 {{--My javasctipt--}}
 <script src="/admin/js/admin.js"></script>
+<script src="/admin/js/images_upload.js"></script>
 </body>
 </html>

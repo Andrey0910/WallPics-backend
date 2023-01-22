@@ -30,5 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/photos/create', [PhotosController::class, 'create'])->name('createPhotos');
     Route::post('/photos/file-upload', [PhotosController::class, 'store'])->name('dropzoneFileUpload');
     Route::get('/set_photos', [SetPhotosController::class, 'index'])->name('setPhotos');
-    Route::get('/set_photos/create', [SetPhotosController::class, 'create'])->name('createSetPhotos');
+//    Route::get('/set_photos/create', [SetPhotosController::class, 'create'])->name('createSetPhotos');
+    Route::get('/set_photos_store', [SetPhotosController::class, 'store'])->name('storeSetPhotos');
 });

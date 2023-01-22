@@ -8,6 +8,6 @@ WallPics-backend
 
 Для установки ролей используем пакет Laravel-permission.
 Создать роль:
-php artisan permission:create-role имя роли
+    php artisan permission:create-role имя роли
 
 Для работы с изображенмем добавлена библиотека intervention/image

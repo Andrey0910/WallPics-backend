@@ -20,7 +20,18 @@ class SetPhotosController extends Controller
      */
     public function index()
     {
-        return view('admin.photos.set_photos');
+        $photosDir = Env::get('BASE_PHOTOS_DIR').'/';
+        $setPhotosDir = Env::get('SET_PHOTOS_DIR').'/';
+
+        $setPhotos = SetPhotos::all();
+
+        $data = [
+            'setPhotos' => $setPhotos,
+            'setPhotosDir' => $setPhotosDir,
+            'photosDir' => $photosDir,
+        ];
+
+        return view('admin.photos.set_photos', $data);
     }
 
     /**
@@ -30,8 +41,21 @@ class SetPhotosController extends Controller
      */
     public function create()
     {
-        $basePathDir = public_path(Env::get('BASE_PHOTOS_DIR').'/');
-        $basePathDirSet = $basePathDir.Env::get('SET_PHOTOS_DIR').'/';
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function store(Request $request)
+    {
+        $photosDir = Env::get('BASE_PHOTOS_DIR').'/';
+        $setPhotosDir = Env::get('SET_PHOTOS_DIR').'/';
+        $basePathDir = public_path($photosDir);
+        $basePathDirSet = public_path($setPhotosDir);
 
         if (file_exists($basePathDirSet)) {
             File::cleanDirectory($basePathDirSet);
@@ -39,9 +63,9 @@ class SetPhotosController extends Controller
         DB::statement('truncate table set_photos');
 
         $photos  = DB::table('photos')
-                        ->inRandomOrder()
-                        ->take(Env::get('SIZE_SET_PHOTOS'))
-                        ->get();
+            ->inRandomOrder()
+            ->take(Env::get('SIZE_SET_PHOTOS'))
+            ->get();
 
         $manager = new ImageManager(array('driver' => 'gd')); // Вместо "imagick" должно быть прописано "gd"
         foreach ($photos as $photo) {
@@ -72,24 +96,17 @@ class SetPhotosController extends Controller
             $setPhotos->save();
         }
 
+        $setPhotos = SetPhotos::all();
+
         $data = [
             'result' => 'Новый сет создан',
-            'photos' => $photos,
-            'basePathDir' => Env::get('BASE_PHOTOS_DIR').'/',
+            'setPhotos' => $setPhotos,
+            'setPhotosDir' => $setPhotosDir,
+            'photosDir' => $photosDir,
+            'navLink' => 'active',
         ];
 
         return view('admin.photos.set_photos', $data);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
