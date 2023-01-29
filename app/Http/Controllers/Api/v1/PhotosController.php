@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Photos;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PhotosStorRequest;
+use App\Http\Resources\PhotosResource;
 use App\Models\Photos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Env;
-use Illuminate\Support\Facades\Storage;
 use PHPUnit\Exception;
 
 class PhotosController extends Controller
@@ -19,24 +19,14 @@ class PhotosController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function create()
-    {
-        return view('admin.photos.load_photos');
+        return PhotosResource::collection(Photos::all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function store(PhotosStorRequest $request)
     {
@@ -71,18 +61,7 @@ class PhotosController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return new PhotosResource(Photos::findOrFail($id));
     }
 
     /**
@@ -105,7 +84,9 @@ class PhotosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $photo = Photos::findOrFail($id);
+        $photo->isDelete = 1;
+        $photo->save();
     }
 
     /**

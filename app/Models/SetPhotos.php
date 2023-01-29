@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class SetPhotos extends Model
 {
     use HasFactory;
+
+    public function photos(){
+        return $this->belongsTo(Photos::class);
+    }
 }
