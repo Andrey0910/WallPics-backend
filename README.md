@@ -11,3 +11,8 @@ WallPics-backend
     php artisan permission:create-role имя роли
 
 Для работы с изображенмем добавлена библиотека intervention/image
+
+Для за пуска фрона:
+- нужно установить npm
+- выполнить npm install
+- выполнить npm run build (иди для заработка фаронта выполнить npm run dev)
